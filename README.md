@@ -1,3 +1,21 @@
+# Implementation Details
+
+I am documenting my process in real-time. While I may not implement everything described here, I aim to provide as much transparency as possible. If I am uncertain about implementing a feature, I will denote it in quotes.
+
+> "If I have time, I will..."
+
+## Page Structure
+
+I chose a `<SideNavigation/>` to display the **logo** and a `<TopNavigation/>` for the profile picture.
+
+> The idea is that on smaller screens (tablet/phone), I can hide the side navigation and toggle it via a burger menu to overlay it on top of the content.
+
+I primarily used absolute positioning to anchor the navigations and content, ensuring the correct placement. Scrolling is enabled only for the content region (`<main />`).
+
+I generated a logo for fun with Midjourney. The app is named: **SharedMemories (SM)**.
+
+---
+
 # Planned coding challenge: Memory lane
 
 **Please avoid initiating pull requests on this repository or forking this repository. To submit your solution, either set up a repository on your own account or forward a zip file to the appropriate contact within our talent team.**

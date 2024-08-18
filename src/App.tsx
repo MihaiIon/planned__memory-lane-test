@@ -1,11 +1,16 @@
 import './App.css'
 
+import { useState } from 'react'
+
+import { Button } from '@mui/material'
+
 import SideNavigation from './components/SideNavigation'
 import TopNavigation from './components/TopNavigation'
 import MemoryCard from './components/MemoryCard'
-import { Button } from '@mui/material'
 
-const fakeUser = {
+import type { UserType, MemoryType, MemoryWithUserType } from './types/app'
+
+const fakeUser: UserType = {
   firstName: 'Jae',
   lastName: 'Becker',
   fullName: 'Jae Becker',
@@ -13,13 +18,14 @@ const fakeUser = {
   avatar: 'https://randomuser.me/api/portraits',
 }
 
-const fakeMemories = [
+const fakeMemories: MemoryWithUserType[] = [
   {
     id: '1',
     title: 'First Day of School',
     date: 'September 14, 2021',
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec sagittis elit. Nullam id nunc et nunc lacinia fermentum.',
+    user: fakeUser,
   },
   {
     id: '2',
@@ -27,6 +33,7 @@ const fakeMemories = [
     date: 'May 14, 2021',
     content:
       'Aliquam erat volutpat. Nullam nec nunc nec nunc lacinia fermentum. Sed nec sagittis elit. Nullam id nunc et nunc lacinia fermentum.',
+    user: fakeUser,
   },
   {
     id: '3',
@@ -34,8 +41,15 @@ const fakeMemories = [
     date: 'January 14, 2021',
     content:
       'Blandit, odio. Nullam nec nunc nec nunc lacinia fermentum. Sed nec sagittis elit. Nullam id nunc et nunc lacinia fermentum.',
+    user: fakeUser,
   },
 ]
+
+const emptyFormData: MemoryType = {
+  title: '',
+  date: '',
+  content: '',
+}
 
 function App() {
   const handleAddMemory = () => {
@@ -55,15 +69,8 @@ function App() {
           Add Memory
         </Button>
         <div className='flex flex-col justify-center'>
-          {fakeMemories.map((memory, index) => (
-            <MemoryCard
-              key={index}
-              id={memory.id}
-              title={memory.title}
-              date={memory.date}
-              content={memory.content}
-              user={fakeUser}
-            />
+          {memories.map((memory, index) => (
+            <MemoryCard key={index} memory={memory} />
           ))}
         </div>
       </main>

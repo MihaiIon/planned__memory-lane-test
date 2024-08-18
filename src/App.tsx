@@ -1,8 +1,8 @@
-import { CubeIcon } from '@heroicons/react/20/solid'
 import './App.css'
 
 import SideNavigation from './components/SideNavigation'
 import TopNavigation from './components/TopNavigation'
+import MemoryCard from './components/MemoryCard'
 
 const fakeUser = {
   firstName: 'Jae',
@@ -39,18 +39,20 @@ function App() {
       <SideNavigation />
       <TopNavigation />
       /* Content */
-      <main className='absolute top-12 left-16 right-0 bottom-0 overflow-y-auto bg-gray-50 pt-6'>
-        <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
-          <div className='overflow-hidden rounded-lg bg-white shadow h-96'>
-            <div className='px-4 py-5 sm:p-6'>
-              <div className='flex items-center'>
-                <CubeIcon className='h-16 w-16 inline-block' />
-                <h1 className='text-4xl font-semibold text-gray-900 mb-4 ml-4 mt-4'>
-                  Memory lane
-                </h1>
-              </div>
-            </div>
-          </div>
+      <main className='absolute top-12 left-16 right-0 bottom-0 overflow-y-auto bg-gray-50 py-6 px-2 sm:px-8'>
+        <h1 className='text-2xl font-normal mb-6'>
+          {fakeUser.firstName}'s Memory Lane
+        </h1>
+        <div className='flex flex-col justify-center'>
+          {fakeMemories.map((memory, index) => (
+            <MemoryCard
+              key={index}
+              title={memory.title}
+              date={memory.date}
+              content={memory.content}
+              user={fakeUser}
+            />
+          ))}
         </div>
       </main>
     </div>

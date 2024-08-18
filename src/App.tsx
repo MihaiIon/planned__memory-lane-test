@@ -3,6 +3,7 @@ import './App.css'
 import SideNavigation from './components/SideNavigation'
 import TopNavigation from './components/TopNavigation'
 import MemoryCard from './components/MemoryCard'
+import { Button } from '@mui/material'
 
 const fakeUser = {
   firstName: 'Jae',
@@ -21,19 +22,23 @@ const fakeMemories = [
   },
   {
     title: 'First Day of Vacation',
-    date: 'September 14, 2021',
+    date: 'May 14, 2021',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec sagittis elit. Nullam id nunc et nunc lacinia fermentum.',
+      'Aliquam erat volutpat. Nullam nec nunc nec nunc lacinia fermentum. Sed nec sagittis elit. Nullam id nunc et nunc lacinia fermentum.',
   },
   {
     title: 'First Day of Work',
-    date: 'September 14, 2021',
+    date: 'January 14, 2021',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec sagittis elit. Nullam id nunc et nunc lacinia fermentum.',
+      'Blandit, odio. Nullam nec nunc nec nunc lacinia fermentum. Sed nec sagittis elit. Nullam id nunc et nunc lacinia fermentum.',
   },
 ]
 
 function App() {
+  const handleAddMemory = () => {
+    console.log('Add Memory')
+  }
+
   return (
     <div className='absolute top-0 right-0 left-0 bottom-0 overflow-hidden'>
       <SideNavigation />
@@ -43,6 +48,9 @@ function App() {
         <h1 className='text-2xl font-normal mb-6'>
           {fakeUser.firstName}'s Memory Lane
         </h1>
+        <Button onClick={handleAddMemory} variant='contained' className='!mb-6'>
+          Add Memory
+        </Button>
         <div className='flex flex-col justify-center'>
           {fakeMemories.map((memory, index) => (
             <MemoryCard

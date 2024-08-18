@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 import { Button } from '@mui/material'
 
+import MemoryFormModal from './components/MemoryFormModal'
 import SideNavigation from './components/SideNavigation'
 import TopNavigation from './components/TopNavigation'
 import MemoryCard from './components/MemoryCard'
@@ -52,9 +53,12 @@ const emptyFormData: MemoryType = {
 }
 
 function App() {
-  const handleAddMemory = () => {
-    console.log('Add Memory')
-  }
+  const [memories, setMemories] = useState<MemoryWithUserType[]>(fakeMemories)
+
+  const [memoryFormData, setMemoryFormData] =
+    useState<MemoryType>(emptyFormData)
+  const [isMemoryFormModalOpen, setIsMemoryFormModalOpen] =
+    useState<boolean>(false)
 
   return (
     <div className='absolute top-0 right-0 left-0 bottom-0 overflow-hidden'>
@@ -65,7 +69,11 @@ function App() {
         <h1 className='text-2xl font-normal mb-6'>
           {fakeUser.firstName}'s Memory Lane
         </h1>
-        <Button onClick={handleAddMemory} variant='contained' className='!mb-6'>
+        <Button
+          onClick={() => setIsMemoryFormModalOpen(true)}
+          variant='contained'
+          className='!mb-6'
+        >
           Add Memory
         </Button>
         <div className='flex flex-col justify-center'>
@@ -73,6 +81,11 @@ function App() {
             <MemoryCard key={index} memory={memory} />
           ))}
         </div>
+        <MemoryFormModal
+          open={isMemoryFormModalOpen}
+          onClose={() => setIsMemoryFormModalOpen(false)}
+          memoryFormData={memoryFormData}
+        />
       </main>
     </div>
   )

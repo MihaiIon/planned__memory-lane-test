@@ -70,7 +70,9 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
                   id='memory-date'
                   label='Date'
                   type='date'
-                  defaultValue={new Date().toISOString().split('T')[0]}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                   {...field}
                 />
               </FormControl>

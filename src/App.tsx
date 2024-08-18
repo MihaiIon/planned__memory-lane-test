@@ -4,6 +4,35 @@ import './App.css'
 import SideNavigation from './components/SideNavigation'
 import TopNavigation from './components/TopNavigation'
 
+const fakeUser = {
+  firstName: 'Jae',
+  lastName: 'Becker',
+  fullName: 'Jae Becker',
+  initials: 'JB',
+  avatar: 'https://randomuser.me/api/portraits',
+}
+
+const fakeMemories = [
+  {
+    title: 'First Day of School',
+    date: 'September 14, 2021',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec sagittis elit. Nullam id nunc et nunc lacinia fermentum.',
+  },
+  {
+    title: 'First Day of Vacation',
+    date: 'September 14, 2021',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec sagittis elit. Nullam id nunc et nunc lacinia fermentum.',
+  },
+  {
+    title: 'First Day of Work',
+    date: 'September 14, 2021',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec sagittis elit. Nullam id nunc et nunc lacinia fermentum.',
+  },
+]
+
 function App() {
   return (
     <div className='absolute top-0 right-0 left-0 bottom-0 overflow-hidden'>

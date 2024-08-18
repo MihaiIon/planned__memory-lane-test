@@ -15,18 +15,21 @@ const fakeUser = {
 
 const fakeMemories = [
   {
+    id: '1',
     title: 'First Day of School',
     date: 'September 14, 2021',
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec sagittis elit. Nullam id nunc et nunc lacinia fermentum.',
   },
   {
+    id: '2',
     title: 'First Day of Vacation',
     date: 'May 14, 2021',
     content:
       'Aliquam erat volutpat. Nullam nec nunc nec nunc lacinia fermentum. Sed nec sagittis elit. Nullam id nunc et nunc lacinia fermentum.',
   },
   {
+    id: '3',
     title: 'First Day of Work',
     date: 'January 14, 2021',
     content:
@@ -55,6 +58,7 @@ function App() {
           {fakeMemories.map((memory, index) => (
             <MemoryCard
               key={index}
+              id={memory.id}
               title={memory.title}
               date={memory.date}
               content={memory.content}

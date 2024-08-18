@@ -6,24 +6,17 @@ import Avatar from '@mui/material/Avatar'
 import IconButton from '@mui/material/IconButton'
 import { Edit, Delete } from '@mui/icons-material'
 
+import type { MemoryWithUserType } from '../types/app'
+
 import memoryImg from '../assets/fake-memory.jpg'
 
 type MemoryCardProps = {
-  id: string
-  title: string
-  date: string
-  content: string
-  // Ideally, this would be a User type
-  user: {
-    firstName: string
-    lastName: string
-    fullName: string
-    initials: string
-    avatar: string
-  }
+  memory: MemoryWithUserType
 }
 
 export default function MemoryCard(props: MemoryCardProps) {
+  const memory: MemoryWithUserType = props.memory
+
   return (
     <Card
       sx={{ maxWidth: 450 }}
@@ -32,7 +25,9 @@ export default function MemoryCard(props: MemoryCardProps) {
       className='memory-card border mb-6'
     >
       <CardHeader
-        avatar={<Avatar aria-label='user-avatar'>{props.user.initials}</Avatar>}
+        avatar={
+          <Avatar aria-label='user-avatar'>{memory.user.initials}</Avatar>
+        }
         action={[
           <IconButton aria-label='edit'>
             <Edit />
@@ -41,18 +36,18 @@ export default function MemoryCard(props: MemoryCardProps) {
             <Delete />
           </IconButton>,
         ]}
-        title={props.user.fullName}
+        title={memory.user.fullName}
         className='!pb-0'
       />
       <CardContent className='!pt-0'>
-        <h3 className='text-xl font-normal mb-3 mt-3'>{props.title}</h3>
+        <h3 className='text-xl font-normal mb-3 mt-3'>{memory.title}</h3>
         <img
           src={memoryImg}
           alt='Memory'
           className='w-full h-48 object-cover rounded-lg mb-3'
         />
-        <p className='text-gray-600 text-md'>{props.content}</p>
-        <p className='mt-4 text-gray-800 text-xs'>📅 {props.date}</p>
+        <p className='text-gray-600 text-md'>{memory.content}</p>
+        <p className='mt-4 text-gray-800 text-xs'>📅 {memory.date}</p>
       </CardContent>
     </Card>
   )

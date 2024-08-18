@@ -16,15 +16,26 @@ type Inputs = {
 }
 
 export default function MemoryFormModal(props: MemoryFormModalProps) {
-  const { control, handleSubmit } = useForm<Inputs>()
+  const { control, handleSubmit, reset } = useForm<Inputs>({
+    defaultValues: {
+      title: props.memoryFormData.title,
+      date: props.memoryFormData.date,
+      content: props.memoryFormData.content,
+    },
+  })
 
   const isNewMemory = !props.memoryFormData.id
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
 
+  const handleClose = () => {
+    reset()
+    props.onClose()
+  }
+
   return (
     <Modal
       open={props.open}
-      onClose={props.onClose}
+      onClose={handleClose}
       aria-labelledby='Memory Form'
       aria-describedby='Memory Form Modal'
     >
@@ -83,7 +94,7 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
               variant='outlined'
               color='primary'
               className='!mr-2'
-              onClick={props.onClose}
+              onClick={handleClose}
             >
               Cancel
             </Button>

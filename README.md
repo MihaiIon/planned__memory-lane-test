@@ -1,18 +1,38 @@
 # Implementation Details
 
-I am documenting my process in real-time. While I may not implement everything described here, I aim to provide as much transparency as possible. If I am uncertain about implementing a feature, I will denote it in quotes.
+I am documenting my process in real-time to provide transparency. Not everything described here may be implemented, but I aim to share my thoughts and decisions as they evolve. If I am unsure about a feature, it will be noted in quotes.
 
 > "If I have time, I will..."
 
+## Tools
+
+- I installed the `mui` library for form inputs, modals, and possibly card elements. It comes with predefined styles that work out of the box, which I can override with CSS or Tailwind for customization.
+
+> I may also use a third-party library for managing form state with the `useForm` hook, which will make handling dirty values easier when a user updates an existing memory.
+
 ## Page Structure
 
-I chose a `<SideNavigation/>` to display the **logo** and a `<TopNavigation/>` for the profile picture.
+I chose to add a `<SideNavigation/>` to contain the **logo** and a `<TopNavigation/>` to conatin the profile picture.
 
-> The idea is that on smaller screens (tablet/phone), I can hide the side navigation and toggle it via a burger menu to overlay it on top of the content.
+> The idea is to hide the side navigation on smaller screens (tablet/phone) and toggle it via a burger menu to overlay it on top of the content. This structure is common in modern apps, with modules on the side and user-specific features (notifications, profile, etc.) on top. While not strictly necessary for this project, I added it to provide a clear framework for the app.
 
-I primarily used absolute positioning to anchor the navigations and content, ensuring the correct placement. Scrolling is enabled only for the content region (`<main />`).
+I used absolute positioning to anchor the navigations and content, ensuring precise placement. Scrolling is enabled only within the content region (`<main />`).
 
-I generated a logo for fun with Midjourney. The app is named: **SharedMemories (SM)**.
+For fun, I generated a logo using Midjourney. The app is named **SharedMemories (SM)**.
+
+## Memory Cards (UI)
+
+I could have started with the backend, but I chose to prioritize the front-end to focus on the user experience. The backend appears straightforward, so my initial effort is on developing the UI.
+
+### Creating the Card
+
+I opted to use MUI Card components to accelerate development. Creating a `MemoryCard` component from the start will simplify the code, enhance readability, and allow me to loop over the memories to generate all the memory cards efficiently.
+
+### Card Options
+
+There are no clear criteria on whether users can share a single memory, nor are there requirements for a like button with a counter or a message thread for each memory. Therefore, I will not implement these features.
+
+I will focus on the CRUD functionality, ensuring users can **Create, Read, Update, and Delete** memories efficiently.
 
 ---
 

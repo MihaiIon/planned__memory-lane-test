@@ -11,7 +11,12 @@ import MemoryCard from './components/MemoryCard'
 
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 
-import { fetchMemories, createMemory, deleteMemory } from './http/memory'
+import {
+  fetchMemories,
+  createMemory,
+  updateMemory,
+  deleteMemory,
+} from './http/memory'
 
 import { fakeUser } from './fakeData'
 
@@ -52,7 +57,14 @@ function App() {
     setIsMemoryFormModalOpen(true)
   }
 
-  const handleSaveMemory = async (memory: MemoryType) => {
+  // Set the form with the memory data and open the modal
+  const handleEditMemory = (memory: MemoryType) => {
+    setMemoryFormData(memory)
+    setIsMemoryFormModalOpen(true)
+  }
+
+  // Create memory and update the memories
+  const handleCreateMemory = async (memory: MemoryType) => {
     try {
       const data = await createMemory(memory)
       const newMemoryWithUser: MemoryWithUserType = {
@@ -62,12 +74,40 @@ function App() {
 
       setMemories([...memories, newMemoryWithUser])
     } catch (error) {
-      console.error(`Error saving memory: ${error}`)
+      console.error(`Error creating memory: ${error}`)
+    }
+  }
+
+  // Update memory and update the memories
+  const handleUpdateMemory = async (memory: MemoryType) => {
+    try {
+      const data = await updateMemory(memory)
+
+      setMemories((prevMemories: MemoryWithUserType[]) => {
+        const updatedMemories = prevMemories.map((prevMemory) =>
+          prevMemory.id === data.memory.id
+            ? { ...data.memory, user: fakeUser }
+            : prevMemory
+        )
+
+        return updatedMemories
+      })
+    } catch (error) {
+      console.error(`Error updating memory: ${error}`)
+    }
+  }
+
+  // Save memory and update the memories
+  const handleSaveMemory = async (memory: MemoryType) => {
+    if (memory.id) {
+      handleUpdateMemory(memory)
+    } else {
+      handleCreateMemory(memory)
     }
   }
 
   // Delete memory and update the memories
-  const handleDeleteMemory = async (memoryId: string) => {
+  const handleDeleteMemory = async (memoryId: number) => {
     try {
       await deleteMemory(memoryId)
       const updatedMemories = memories.filter(
@@ -102,6 +142,7 @@ function App() {
               <MemoryCard
                 key={index}
                 memory={memory}
+                onEdit={handleEditMemory}
                 onDelete={handleDeleteMemory}
               />
               {index !== memories.length - 1 && (

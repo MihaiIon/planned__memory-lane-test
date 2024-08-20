@@ -10,7 +10,7 @@ export const fakeUser: UserType = {
 
 export const fakeMemories: MemoryWithUserType[] = [
   {
-    id: '1',
+    id: 1,
     name: 'First Day of School',
     timestamp: new Date('September 14, 2021').getTime(),
     description:
@@ -18,7 +18,7 @@ export const fakeMemories: MemoryWithUserType[] = [
     user: fakeUser,
   },
   {
-    id: '2',
+    id: 2,
     name: 'First Day of Vacation',
     timestamp: new Date('May 14, 2021').getTime(),
     description:
@@ -26,7 +26,7 @@ export const fakeMemories: MemoryWithUserType[] = [
     user: fakeUser,
   },
   {
-    id: '3',
+    id: 3,
     name: 'First Day of Work',
     timestamp: new Date('January 14, 2021').getTime(),
     description:

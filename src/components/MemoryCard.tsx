@@ -7,11 +7,12 @@ import { Edit, Delete } from '@mui/icons-material'
 
 import UserAvatar from './UserAvatar'
 
-import type { MemoryWithUserType } from '../types/app'
+import type { MemoryType, MemoryWithUserType } from '../types/app'
 
 type MemoryCardProps = {
   memory: MemoryWithUserType
-  onDelete: (memoryId: string) => void
+  onEdit: (memory: MemoryType) => void
+  onDelete: (memoryId: number) => void
 }
 
 /**
@@ -32,6 +33,15 @@ const formatTimestampToDate = (timestamp: number) => {
 export default function MemoryCard(props: MemoryCardProps) {
   const memory: MemoryWithUserType = props.memory
 
+  const handleEdit = () => {
+    props.onEdit({
+      id: memory.id,
+      name: memory.name,
+      timestamp: memory.timestamp,
+      description: memory.description,
+    } as MemoryType)
+  }
+
   return (
     <Card
       sx={{ maxWidth: 450 }}
@@ -42,12 +52,12 @@ export default function MemoryCard(props: MemoryCardProps) {
       <CardHeader
         avatar={<UserAvatar user={memory.user} />}
         action={[
-          <IconButton aria-label='edit'>
+          <IconButton aria-label='edit' onClick={handleEdit}>
             <Edit />
           </IconButton>,
           <IconButton
             aria-label='delete'
-            onClick={() => props.onDelete(memory.id ?? '')}
+            onClick={() => props.onDelete(memory.id ?? -1)}
           >
             <Delete />
           </IconButton>,

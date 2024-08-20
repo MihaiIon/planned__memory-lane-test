@@ -97,7 +97,15 @@ app.put('/memories/:id', (req, res) => {
       res.status(500).json({ error: err.message })
       return
     }
-    res.json({ message: 'Memory updated successfully' })
+  })
+
+  // return the memory that was just updated
+  db.get('SELECT * FROM memories WHERE id = ?', [id], (err, row) => {
+    if (err) {
+      res.status(500).json({ error: err.message })
+      return
+    }
+    res.json({ memory: row })
   })
 })
 

@@ -19,11 +19,15 @@ export const createMemory = async (memory: MemoryType) => {
   }
 }
 
-export const fetchMemories = async () => {
+type FetchMemoriesResponseType = {
+  memories: MemoryType[]
+}
+
+export const fetchMemories = async (): Promise<FetchMemoriesResponseType> => {
   try {
     const response = await fetch('http://localhost:4001/memories')
     return response.json()
   } catch (error) {
-    console.error('Error fetching memories:', error)
+    throw new Error(`Error fetching memories: ${error}`)
   }
 }

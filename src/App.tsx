@@ -9,7 +9,7 @@ import SideNavigation from './components/SideNavigation'
 import TopNavigation from './components/TopNavigation'
 import MemoryCard from './components/MemoryCard'
 
-import { fetchMemories } from './http/memory'
+import { fetchMemories, createMemory } from './http/memory'
 
 import { fakeUser, fakeMemories } from './fakeData'
 
@@ -22,7 +22,7 @@ const EMPTY_FORM_DATA: MemoryType = {
 }
 
 function App() {
-  const [memories, setMemories] = useState<MemoryWithUserType[]>(fakeMemories)
+  const [memories, setMemories] = useState<MemoryWithUserType[]>([])
 
   const [memoryFormData, setMemoryFormData] =
     useState<MemoryType>(EMPTY_FORM_DATA)

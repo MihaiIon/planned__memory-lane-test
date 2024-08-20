@@ -6,6 +6,7 @@ import type { MemoryType } from '../types/app'
 type MemoryFormModalProps = {
   open: boolean
   onClose: () => void
+  onSave: (memory: MemoryType) => Promise<void>
   memoryFormData: MemoryType
 }
 
@@ -15,21 +16,45 @@ type Inputs = {
   content: string
 }
 
+/**
+ * Helper function. Can be reused in other components if moved to a shared file.
+ */
+const formatTimestampToDateValue = (timestamp: number) => {
+  return new Date(timestamp).toISOString().split('T')[0]
+}
+
 export default function MemoryFormModal(props: MemoryFormModalProps) {
-  const { control, handleSubmit, reset } = useForm<Inputs>({
+  const { memoryFormData: initialData, onClose, onSave } = props
+
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Inputs>({
     defaultValues: {
-      title: props.memoryFormData.title,
-      date: props.memoryFormData.date,
-      content: props.memoryFormData.content,
+      title: initialData.title,
+      date: formatTimestampToDateValue(initialData.timestamp),
+      content: initialData.content,
     },
   })
 
-  const isNewMemory = !props.memoryFormData.id
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+  const isNewMemory = !initialData.id
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const memory: MemoryType = {
+      ...initialData,
+      title: data.title,
+      timestamp: new Date(data.date).getTime(),
+      content: data.content,
+    }
+    await onSave(memory)
+    onClose()
+  }
 
   const handleClose = () => {
     reset()
-    props.onClose()
+    onClose()
   }
 
   return (

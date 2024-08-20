@@ -49,6 +49,20 @@ function App() {
     setIsMemoryFormModalOpen(true)
   }
 
+  const handleSave = async (memory: MemoryType) => {
+    try {
+      const newMemory = await createMemory(memory)
+      const newMemoryWithUser: MemoryWithUserType = {
+        ...newMemory,
+        user: fakeUser,
+      }
+
+      setMemories([...memories, newMemoryWithUser])
+    } catch (error) {
+      console.error(`Error saving memory: ${error}`)
+    }
+  }
+
   return (
     <div className='absolute top-0 right-0 left-0 bottom-0 overflow-hidden'>
       <SideNavigation />
@@ -73,6 +87,7 @@ function App() {
         <MemoryFormModal
           open={isMemoryFormModalOpen}
           onClose={() => setIsMemoryFormModalOpen(false)}
+          onSave={handleSave}
           memoryFormData={memoryFormData}
         />
       </main>

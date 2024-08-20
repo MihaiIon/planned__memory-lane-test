@@ -1,6 +1,6 @@
 import type { MemoryType } from '../types/app'
 
-export const createMemory = async (memory: MemoryType) => {
+export const createMemory = async (memory: MemoryType): Promise<MemoryType> => {
   try {
     const response = await fetch('http://localhost:4001/memories', {
       method: 'POST',
@@ -13,9 +13,9 @@ export const createMemory = async (memory: MemoryType) => {
         timestamp: memory.timestamp,
       }),
     })
-    return response.json()
+    return response.json() as Promise<MemoryType>
   } catch (error) {
-    console.error('Error creating memory:', error)
+    throw new Error(`Error creating memory: ${error}`)
   }
 }
 

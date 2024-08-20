@@ -37,7 +37,7 @@ export default function MemoryCard(props: MemoryCardProps) {
       sx={{ maxWidth: 450 }}
       variant='elevation'
       elevation={0}
-      className='memory-card border mb-6'
+      className='memory-card border mx-auto'
     >
       <CardHeader
         avatar={<UserAvatar user={memory.user} />}
@@ -56,9 +56,9 @@ export default function MemoryCard(props: MemoryCardProps) {
         className='!pb-0'
       />
       <CardContent className='!pt-0'>
-        <h3 className='text-xl font-normal mb-3 mt-3'>{memory.name}</h3>
-        <p className='text-gray-600 text-md'>{memory.description}</p>
-        <p className='mt-4 text-gray-800 text-xs'>
+        <h3 className='text-2xl font-medium mb-3 mt-3'>{memory.name}</h3>
+        <p className='text-gray-600 text-xl'>{memory.description}</p>
+        <p className='mt-4 text-gray-800 text-center text-sm mt-4'>
           📅 {formatTimestampToDate(memory.timestamp)}
         </p>
       </CardContent>

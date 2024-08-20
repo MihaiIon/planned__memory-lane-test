@@ -9,6 +9,8 @@ import SideNavigation from './components/SideNavigation'
 import TopNavigation from './components/TopNavigation'
 import MemoryCard from './components/MemoryCard'
 
+import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
+
 import { fetchMemories, createMemory, deleteMemory } from './http/memory'
 
 import { fakeUser } from './fakeData'
@@ -83,8 +85,8 @@ function App() {
       <SideNavigation />
       <TopNavigation />
       /* Content */
-      <main className='absolute top-12 left-16 right-0 bottom-0 overflow-y-auto bg-gray-50 py-6 px-2 sm:px-8'>
-        <h1 className='text-2xl font-normal mb-6'>
+      <main className='absolute top-16 left-20 right-0 bottom-0 overflow-y-auto bg-gray-50 py-8 px-2 sm:px-8'>
+        <h1 className='text-4xl font-medium mb-6 text-center'>
           {fakeUser.firstName}'s Memory Lane
         </h1>
         <Button
@@ -94,13 +96,18 @@ function App() {
         >
           Add Memory
         </Button>
-        <div className='flex flex-col justify-center'>
+        <div className=''>
           {memories.map((memory, index) => (
-            <MemoryCard
-              key={index}
-              memory={memory}
-              onDelete={handleDeleteMemory}
-            />
+            <>
+              <MemoryCard
+                key={index}
+                memory={memory}
+                onDelete={handleDeleteMemory}
+              />
+              {index !== memories.length - 1 && (
+                <EllipsisVerticalIcon className='h-6 w-6 text-gray-500 mx-auto my-2' />
+              )}
+            </>
           ))}
         </div>
         <MemoryFormModal

@@ -13,7 +13,7 @@ export default function UserAvatar(props: UserAvatarProps) {
     <Avatar
       alt={props.user.fullName}
       src={jaeBeckerAvatar}
-      sx={{ width: 48, height: 48 }}
+      sx={{ width: 42, height: 42 }}
     />
   )
 }

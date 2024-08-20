@@ -49,6 +49,7 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
       description: data.description.trim(),
     }
     await onSave(memory)
+    reset()
     onClose()
   }
 

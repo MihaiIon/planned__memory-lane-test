@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { Modal, FormControl, TextField, Button } from '@mui/material'
 
@@ -40,6 +41,15 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
   })
 
   const isNewMemory = !initialData.id
+
+  // Reset form data when the modal is opened
+  useEffect(() => {
+    reset({
+      name: initialData.name,
+      date: formatTimestampToDateValue(initialData.timestamp),
+      description: initialData.description,
+    })
+  }, [initialData, reset])
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const memory: MemoryType = {

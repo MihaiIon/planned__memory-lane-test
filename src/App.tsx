@@ -1,6 +1,6 @@
 import './App.css'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Button } from '@mui/material'
 
@@ -8,6 +8,8 @@ import MemoryFormModal from './components/MemoryFormModal'
 import SideNavigation from './components/SideNavigation'
 import TopNavigation from './components/TopNavigation'
 import MemoryCard from './components/MemoryCard'
+
+import { fetchMemories } from './http/memory'
 
 import { fakeUser, fakeMemories } from './fakeData'
 
@@ -26,6 +28,11 @@ function App() {
     useState<MemoryType>(EMPTY_FORM_DATA)
   const [isMemoryFormModalOpen, setIsMemoryFormModalOpen] =
     useState<boolean>(false)
+
+  // Fetch memories on initial render
+  useEffect(() => {
+    fetchMemories().then((data) => setMemories(data.memories))
+  }, [])
 
   return (
     <div className='absolute top-0 right-0 left-0 bottom-0 overflow-hidden'>

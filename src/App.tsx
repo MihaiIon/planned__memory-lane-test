@@ -34,6 +34,11 @@ function App() {
     fetchMemories().then((data) => setMemories(data.memories))
   }, [])
 
+  const handleAddMemory = () => {
+    setMemoryFormData(EMPTY_FORM_DATA)
+    setIsMemoryFormModalOpen(true)
+  }
+
   return (
     <div className='absolute top-0 right-0 left-0 bottom-0 overflow-hidden'>
       <SideNavigation />
@@ -44,7 +49,7 @@ function App() {
           {fakeUser.firstName}'s Memory Lane
         </h1>
         <Button
-          onClick={() => setIsMemoryFormModalOpen(true)}
+          onClick={() => handleAddMemory()}
           variant='contained'
           className='!mb-6'
         >

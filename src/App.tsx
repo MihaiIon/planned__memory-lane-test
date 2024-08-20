@@ -16,9 +16,9 @@ import { fakeUser } from './fakeData'
 import type { MemoryType, MemoryWithUserType } from './types/app'
 
 const EMPTY_FORM_DATA: MemoryType = {
-  title: '',
+  name: '',
   timestamp: new Date().getTime(), // current timestamp
-  content: '',
+  description: '',
 }
 
 function App() {
@@ -51,9 +51,9 @@ function App() {
 
   const handleSave = async (memory: MemoryType) => {
     try {
-      const newMemory = await createMemory(memory)
+      const data = await createMemory(memory)
       const newMemoryWithUser: MemoryWithUserType = {
-        ...newMemory,
+        ...data.memory,
         user: fakeUser,
       }
 

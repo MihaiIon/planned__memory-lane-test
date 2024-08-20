@@ -11,9 +11,9 @@ type MemoryFormModalProps = {
 }
 
 type Inputs = {
-  title: string
+  name: string
   date: string
-  content: string
+  description: string
 }
 
 /**
@@ -33,9 +33,9 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
     formState: { errors },
   } = useForm<Inputs>({
     defaultValues: {
-      title: initialData.title,
+      name: initialData.name,
       date: formatTimestampToDateValue(initialData.timestamp),
-      content: initialData.content,
+      description: initialData.description,
     },
   })
 
@@ -44,9 +44,9 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const memory: MemoryType = {
       ...initialData,
-      title: data.title.trim(),
+      name: data.name.trim(),
       timestamp: new Date(data.date).getTime(),
-      content: data.content.trim(),
+      description: data.description.trim(),
     }
     await onSave(memory)
     onClose()
@@ -70,31 +70,31 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
             {isNewMemory ? 'Add' : 'Edit'} Memory
           </h2>
           <Controller
-            name='title'
+            name='name'
             control={control}
             rules={{
-              required: 'Title is required',
+              required: 'Name is required',
               validate: (value) =>
                 value.trim() !== '' ||
-                'Title cannot be empty or contain only spaces',
+                'Name cannot be empty or contain only spaces',
             }}
             render={({ field }) => (
               <FormControl fullWidth margin='normal'>
                 <TextField
-                  id='form--memory-title'
-                  label='Title'
-                  error={!!errors.title}
-                  helperText={errors.title ? errors.title.message : ''}
+                  id='form--memory-name'
+                  label='Name'
+                  error={!!errors.name}
+                  helperText={errors.name ? errors.name.message : ''}
                   {...field}
                 />
               </FormControl>
             )}
           />
           <Controller
-            name='content'
+            name='description'
             control={control}
             rules={{
-              required: 'Content is required',
+              required: 'Description is required',
               validate: (value) =>
                 value.trim() !== '' ||
                 'Content cannot be empty or contain only spaces',
@@ -102,12 +102,14 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
             render={({ field }) => (
               <FormControl fullWidth margin='normal'>
                 <TextField
-                  id='form--memory-content'
-                  label='Content'
+                  id='form--memory-description'
+                  label='Description'
                   multiline
                   rows={2}
-                  error={!!errors.content}
-                  helperText={errors.content ? errors.content.message : ''}
+                  error={!!errors.description}
+                  helperText={
+                    errors.description ? errors.description.message : ''
+                  }
                   {...field}
                 />
               </FormControl>

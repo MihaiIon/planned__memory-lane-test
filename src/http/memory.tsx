@@ -1,19 +1,27 @@
 import type { MemoryType } from '../types/app'
 
-export const createMemory = async (memory: MemoryType): Promise<MemoryType> => {
+const API_URL = 'http://localhost:4001'
+
+type CreateMemoryResponseType = {
+  memory: MemoryType
+}
+
+export const createMemory = async (
+  memory: MemoryType
+): Promise<CreateMemoryResponseType> => {
   try {
-    const response = await fetch('http://localhost:4001/memories', {
+    const response = await fetch(`${API_URL}/memories`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        title: memory.title,
-        content: memory.content,
+        name: memory.name,
+        description: memory.description,
         timestamp: memory.timestamp,
       }),
     })
-    return response.json() as Promise<MemoryType>
+    return response.json()
   } catch (error) {
     throw new Error(`Error creating memory: ${error}`)
   }
@@ -25,7 +33,7 @@ type FetchMemoriesResponseType = {
 
 export const fetchMemories = async (): Promise<FetchMemoriesResponseType> => {
   try {
-    const response = await fetch('http://localhost:4001/memories')
+    const response = await fetch(`${API_URL}/memories`)
     return response.json()
   } catch (error) {
     throw new Error(`Error fetching memories: ${error}`)

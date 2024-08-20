@@ -8,9 +8,9 @@ export type UserType = {
 
 export type MemoryType = {
   id?: string
-  title: string
+  name: string
   timestamp: number
-  content: string
+  description: string
 }
 
 export type MemoryWithUserType = MemoryType & {

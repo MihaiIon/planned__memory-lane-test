@@ -11,7 +11,7 @@ import MemoryCard from './components/MemoryCard'
 
 import { fetchMemories, createMemory } from './http/memory'
 
-import { fakeUser, fakeMemories } from './fakeData'
+import { fakeUser } from './fakeData'
 
 import type { MemoryType, MemoryWithUserType } from './types/app'
 
@@ -31,7 +31,17 @@ function App() {
 
   // Fetch memories on initial render
   useEffect(() => {
-    fetchMemories().then((data) => setMemories(data.memories))
+    // Ideally this would be done backend, but I didn't want to create additional tables for this project
+    // So I'm just adding the user to the memory object here
+    fetchMemories().then((data) => {
+      const memories: MemoryType[] = data.memories
+      const memoriesWithUser: MemoryWithUserType[] = memories.map((memory) => ({
+        ...memory,
+        user: fakeUser,
+      }))
+
+      setMemories(memoriesWithUser)
+    })
   }, [])
 
   const handleAddMemory = () => {

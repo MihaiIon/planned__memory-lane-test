@@ -48,8 +48,19 @@ app.post('/memories', (req, res) => {
       res.status(500).json({ error: err.message })
       return
     }
-    res.status(201).json({ message: 'Memory created successfully' })
   })
+
+  // return the memory that was just created - we will make use of id if we want to update or delete the memory
+  db.get(
+    'SELECT * FROM memories WHERE id = last_insert_rowid()',
+    (err, row) => {
+      if (err) {
+        console.log(err)
+        return
+      }
+      res.json({ memory: row })
+    }
+  )
 })
 
 app.get('/memories/:id', (req, res) => {

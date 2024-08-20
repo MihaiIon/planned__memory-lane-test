@@ -5,7 +5,7 @@ export const fakeUser: UserType = {
   lastName: 'Becker',
   fullName: 'Jae Becker',
   initials: 'JB',
-  avatar: 'https://randomuser.me/api/portraits',
+  avatar: 'some-url',
 }
 
 export const fakeMemories: MemoryWithUserType[] = [

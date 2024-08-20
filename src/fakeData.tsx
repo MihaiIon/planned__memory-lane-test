@@ -1,4 +1,4 @@
-import type { UserType, MemoryType, MemoryWithUserType } from './types/app'
+import type { UserType, MemoryWithUserType } from './types/app'
 
 export const fakeUser: UserType = {
   firstName: 'Jae',
@@ -12,7 +12,7 @@ export const fakeMemories: MemoryWithUserType[] = [
   {
     id: '1',
     title: 'First Day of School',
-    date: 'September 14, 2021',
+    timestamp: new Date('September 14, 2021').getTime(),
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec sagittis elit. Nullam id nunc et nunc lacinia fermentum.',
     user: fakeUser,
@@ -20,7 +20,7 @@ export const fakeMemories: MemoryWithUserType[] = [
   {
     id: '2',
     title: 'First Day of Vacation',
-    date: 'May 14, 2021',
+    timestamp: new Date('May 14, 2021').getTime(),
     content:
       'Aliquam erat volutpat. Nullam nec nunc nec nunc lacinia fermentum. Sed nec sagittis elit. Nullam id nunc et nunc lacinia fermentum.',
     user: fakeUser,
@@ -28,7 +28,7 @@ export const fakeMemories: MemoryWithUserType[] = [
   {
     id: '3',
     title: 'First Day of Work',
-    date: 'January 14, 2021',
+    timestamp: new Date('January 14, 2021').getTime(),
     content:
       'Blandit, odio. Nullam nec nunc nec nunc lacinia fermentum. Sed nec sagittis elit. Nullam id nunc et nunc lacinia fermentum.',
     user: fakeUser,

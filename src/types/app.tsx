@@ -9,7 +9,7 @@ export type UserType = {
 export type MemoryType = {
   id?: string
   title: string
-  date: string
+  timestamp: number
   content: string
 }
 

@@ -14,6 +14,21 @@ type MemoryCardProps = {
   memory: MemoryWithUserType
 }
 
+/**
+ * Helper function. Can be reused in other components if moved to a shared file.
+ */
+const formatTimestampToDate = (timestamp: number) => {
+  const dateObj = new Date(timestamp)
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }
+  const dateString = dateObj.toLocaleDateString('en-US', options)
+
+  return dateString
+}
+
 export default function MemoryCard(props: MemoryCardProps) {
   const memory: MemoryWithUserType = props.memory
 
@@ -47,7 +62,9 @@ export default function MemoryCard(props: MemoryCardProps) {
           className='w-full h-48 object-cover rounded-lg mb-3'
         />
         <p className='text-gray-600 text-md'>{memory.content}</p>
-        <p className='mt-4 text-gray-800 text-xs'>📅 {memory.date}</p>
+        <p className='mt-4 text-gray-800 text-xs'>
+          📅 {formatTimestampToDate(memory.timestamp)}
+        </p>
       </CardContent>
     </Card>
   )

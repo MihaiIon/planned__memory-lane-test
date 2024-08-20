@@ -17,7 +17,7 @@ import type { MemoryType, MemoryWithUserType } from './types/app'
 
 const EMPTY_FORM_DATA: MemoryType = {
   title: '',
-  date: '',
+  timestamp: new Date().getTime(), // current timestamp
   content: '',
 }
 

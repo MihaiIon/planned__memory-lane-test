@@ -44,9 +44,9 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const memory: MemoryType = {
       ...initialData,
-      title: data.title,
+      title: data.title.trim(),
       timestamp: new Date(data.date).getTime(),
-      content: data.content,
+      content: data.content.trim(),
     }
     await onSave(memory)
     onClose()
@@ -72,25 +72,42 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
           <Controller
             name='title'
             control={control}
-            defaultValue={props.memoryFormData.title}
+            rules={{
+              required: 'Title is required',
+              validate: (value) =>
+                value.trim() !== '' ||
+                'Title cannot be empty or contain only spaces',
+            }}
             render={({ field }) => (
-              <FormControl className='w-full !mb-4'>
-                <TextField id='memory-title' label='Title' {...field} />
+              <FormControl fullWidth margin='normal'>
+                <TextField
+                  id='form--memory-title'
+                  label='Title'
+                  error={!!errors.title}
+                  helperText={errors.title ? errors.title.message : ''}
+                  {...field}
+                />
               </FormControl>
             )}
           />
           <Controller
             name='content'
             control={control}
-            defaultValue={props.memoryFormData.date}
+            rules={{
+              required: 'Content is required',
+              validate: (value) =>
+                value.trim() !== '' ||
+                'Content cannot be empty or contain only spaces',
+            }}
             render={({ field }) => (
-              <FormControl className='w-full !mb-4'>
+              <FormControl fullWidth margin='normal'>
                 <TextField
-                  id='memory-content'
+                  id='form--memory-content'
                   label='Content'
                   multiline
                   rows={2}
-                  maxRows={4}
+                  error={!!errors.content}
+                  helperText={errors.content ? errors.content.message : ''}
                   {...field}
                 />
               </FormControl>
@@ -99,16 +116,18 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
           <Controller
             name='date'
             control={control}
-            defaultValue={props.memoryFormData.content}
+            rules={{ required: 'Date is required' }}
             render={({ field }) => (
-              <FormControl className='w-full !mb-4'>
+              <FormControl fullWidth margin='normal'>
                 <TextField
-                  id='memory-date'
+                  id='form--memory-date'
                   label='Date'
                   type='date'
                   InputLabelProps={{
                     shrink: true,
                   }}
+                  error={!!errors.date}
+                  helperText={errors.date ? errors.date.message : ''}
                   {...field}
                 />
               </FormControl>

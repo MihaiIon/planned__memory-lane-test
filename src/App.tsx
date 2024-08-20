@@ -9,7 +9,7 @@ import SideNavigation from './components/SideNavigation'
 import TopNavigation from './components/TopNavigation'
 import MemoryCard from './components/MemoryCard'
 
-import { fetchMemories, createMemory } from './http/memory'
+import { fetchMemories, createMemory, deleteMemory } from './http/memory'
 
 import { fakeUser } from './fakeData'
 
@@ -44,12 +44,13 @@ function App() {
     })
   }, [])
 
+  // Set the form empty and open the modal
   const handleAddMemory = () => {
     setMemoryFormData(EMPTY_FORM_DATA)
     setIsMemoryFormModalOpen(true)
   }
 
-  const handleSave = async (memory: MemoryType) => {
+  const handleSaveMemory = async (memory: MemoryType) => {
     try {
       const data = await createMemory(memory)
       const newMemoryWithUser: MemoryWithUserType = {
@@ -60,6 +61,20 @@ function App() {
       setMemories([...memories, newMemoryWithUser])
     } catch (error) {
       console.error(`Error saving memory: ${error}`)
+    }
+  }
+
+  // Delete memory and update the memories
+  const handleDeleteMemory = async (memoryId: string) => {
+    try {
+      await deleteMemory(memoryId)
+      const updatedMemories = memories.filter(
+        (memory) => memory.id !== memoryId
+      )
+
+      setMemories(updatedMemories)
+    } catch (error) {
+      console.error(`Error deleting memory: ${error}`)
     }
   }
 
@@ -81,13 +96,17 @@ function App() {
         </Button>
         <div className='flex flex-col justify-center'>
           {memories.map((memory, index) => (
-            <MemoryCard key={index} memory={memory} />
+            <MemoryCard
+              key={index}
+              memory={memory}
+              onDelete={handleDeleteMemory}
+            />
           ))}
         </div>
         <MemoryFormModal
           open={isMemoryFormModalOpen}
           onClose={() => setIsMemoryFormModalOpen(false)}
-          onSave={handleSave}
+          onSave={handleSaveMemory}
           memoryFormData={memoryFormData}
         />
       </main>

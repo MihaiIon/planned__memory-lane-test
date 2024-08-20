@@ -39,3 +39,13 @@ export const fetchMemories = async (): Promise<FetchMemoriesResponseType> => {
     throw new Error(`Error fetching memories: ${error}`)
   }
 }
+
+export const deleteMemory = async (memoryId: string): Promise<void> => {
+  try {
+    await fetch(`${API_URL}/memories/${memoryId}`, {
+      method: 'DELETE',
+    })
+  } catch (error) {
+    throw new Error(`Error deleting memory: ${error}`)
+  }
+}

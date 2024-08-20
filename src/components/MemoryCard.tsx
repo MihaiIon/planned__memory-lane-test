@@ -12,6 +12,7 @@ import memoryImg from '../assets/fake-memory.jpg'
 
 type MemoryCardProps = {
   memory: MemoryWithUserType
+  onDelete: (memoryId: string) => void
 }
 
 /**
@@ -47,7 +48,10 @@ export default function MemoryCard(props: MemoryCardProps) {
           <IconButton aria-label='edit'>
             <Edit />
           </IconButton>,
-          <IconButton aria-label='delete'>
+          <IconButton
+            aria-label='delete'
+            onClick={() => props.onDelete(memory.id ?? '')}
+          >
             <Delete />
           </IconButton>,
         ]}

@@ -1,8 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Card, CardContent, TextField } from '@mui/material'
-
-import { IconButton } from '@mui/material'
-import { KeyboardArrowUp } from '@mui/icons-material'
 
 import MemoryFormModal from '../components/MemoryFormModal'
 import SideNavigation from '../components/SideNavigation'
@@ -10,6 +7,7 @@ import TopNavigation from '../components/TopNavigation'
 import MemoryList from '../components/MemoryList'
 import UserAvatar from '../components/UserAvatar'
 import ShareButton from '../components/ShareButton'
+import BackToTopButton from '../components/BackToTopButton'
 
 import { useMemories } from '../hooks/useMemories'
 import { fakeUser } from '../fakeData'
@@ -52,12 +50,18 @@ export default function UserView() {
     setIsMemoryFormModalOpen(true)
   }
 
+  // For the BackToTopButton component
+  const backToTopTargetRef = useRef<HTMLDivElement>(null)
+
   return (
     <div className='absolute top-0 right-0 left-0 bottom-0 overflow-hidden'>
       <SideNavigation />
       <TopNavigation />
-      <main className='absolute top-16 left-20 right-0 bottom-0 overflow-y-auto bg-gray-50 pt-10 pb-20 px-2 sm:px-8'>
-        <h1 className='text-4xl font-medium mt-4 text-center'>
+      <main className='absolute top-16 left-20 right-0 bottom-0 overflow-y-auto bg-gray-50 pb-20 px-2 sm:px-8'>
+        <h1
+          className='text-4xl font-medium pt-20 text-center'
+          ref={backToTopTargetRef}
+        >
           <span>{fakeUser.firstName}'s Memory Lane</span>
           <ShareButton />
         </h1>
@@ -106,18 +110,7 @@ export default function UserView() {
           memoryFormData={memoryFormData}
         />
 
-        <IconButton
-          aria-label='scroll-to-top'
-          className='!fixed bottom-16 right-16'
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          size='large'
-          sx={{
-            border: '1px solid currentColor',
-            borderRadius: '50%',
-          }}
-        >
-          <KeyboardArrowUp />
-        </IconButton>
+        <BackToTopButton targetRef={backToTopTargetRef} />
       </main>
     </div>
   )

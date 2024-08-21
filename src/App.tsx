@@ -77,6 +77,14 @@ function App() {
           </CardContent>
         </Card>
 
+        {memories.length === 0 && (
+          <div className='text-gray-500 text-center text-xl mt-8'>
+            A blank canvas, waiting for your
+            <br />
+            cherished moments to bring it to life 🌠
+          </div>
+        )}
+
         <MemoryList
           memories={memories}
           onAdd={handleAddMemory}

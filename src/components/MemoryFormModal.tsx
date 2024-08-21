@@ -53,6 +53,11 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
     })
   }, [initialData, reset])
 
+  const handleClose = () => {
+    reset()
+    onClose()
+  }
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const [year, month, day] = data.date.split('-').map(Number)
     const memory: MemoryType = {
@@ -62,13 +67,7 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
       description: data.description.trim(),
     }
     await onSave(memory)
-    reset()
-    onClose()
-  }
-
-  const handleClose = () => {
-    reset()
-    onClose()
+    handleClose()
   }
 
   return (
@@ -78,7 +77,7 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
       aria-labelledby='Memory Form'
       aria-describedby='Memory Form Modal'
     >
-      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg'>
+      <div className='modal--inner absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8'>
         <IconButton
           aria-label='close'
           onClick={handleClose}
@@ -118,7 +117,7 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
               required: 'Description is required',
               validate: (value) =>
                 value.trim() !== '' ||
-                'Content cannot be empty or contain only spaces',
+                'Descripton cannot be empty or contain only spaces',
             }}
             render={({ field }) => (
               <FormControl fullWidth margin='normal'>
@@ -173,7 +172,12 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
             >
               Cancel
             </Button>
-            <Button type='submit' variant='contained' color='primary'>
+            <Button
+              type='submit'
+              variant='contained'
+              color='primary'
+              size='large'
+            >
               {isNewMemory ? 'Add' : 'Save'}
             </Button>
           </div>

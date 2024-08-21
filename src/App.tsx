@@ -38,8 +38,8 @@ function App() {
     setIsMemoryFormModalOpen(false)
   }
 
-  const handleAddMemory = () => {
-    setMemoryFormData(EMPTY_FORM_DATA)
+  const handleAddMemory = (memory: Partial<MemoryType> = {}) => {
+    setMemoryFormData({ ...EMPTY_FORM_DATA, ...memory })
     setIsMemoryFormModalOpen(true)
   }
 
@@ -61,9 +61,11 @@ function App() {
         </Button>
         <MemoryList
           memories={memories}
+          onAdd={handleAddMemory}
           onEdit={handleEditMemory}
           onDelete={handleDeleteMemory}
         />
+
         <MemoryFormModal
           open={isMemoryFormModalOpen}
           onClose={() => setIsMemoryFormModalOpen(false)}

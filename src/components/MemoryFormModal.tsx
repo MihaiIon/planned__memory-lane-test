@@ -9,6 +9,8 @@ import {
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 
+import { formatTimestampToLocalDateString } from '../utils/dateUtils'
+
 import type { MemoryType } from '../types/app'
 
 type MemoryFormModalProps = {
@@ -24,13 +26,6 @@ type Inputs = {
   description: string
 }
 
-/**
- * Helper function. Can be reused in other components if moved to a shared file.
- */
-const formatTimestampToDateValue = (timestamp: number) => {
-  return new Date(timestamp).toISOString().split('T')[0]
-}
-
 export default function MemoryFormModal(props: MemoryFormModalProps) {
   const { memoryFormData: initialData, onClose, onSave } = props
 
@@ -42,7 +37,7 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
   } = useForm<Inputs>({
     defaultValues: {
       name: initialData.name,
-      date: formatTimestampToDateValue(initialData.timestamp),
+      date: formatTimestampToLocalDateString(initialData.timestamp),
       description: initialData.description,
     },
   })
@@ -53,16 +48,17 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
   useEffect(() => {
     reset({
       name: initialData.name,
-      date: formatTimestampToDateValue(initialData.timestamp),
+      date: formatTimestampToLocalDateString(initialData.timestamp),
       description: initialData.description,
     })
   }, [initialData, reset])
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const [year, month, day] = data.date.split('-').map(Number)
     const memory: MemoryType = {
       ...initialData,
       name: data.name.trim(),
-      timestamp: new Date(data.date).getTime(),
+      timestamp: Date.UTC(year, month - 1, day + 1),
       description: data.description.trim(),
     }
     await onSave(memory)

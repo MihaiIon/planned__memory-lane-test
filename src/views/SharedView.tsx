@@ -48,6 +48,12 @@ export default function SharedView() {
         readOnly
       />
 
+      {memories.length === 0 && (
+        <div className='text-gray-500 text-center text-xl mt-8'>
+          This user hasn't shared any memories yet ⛅
+        </div>
+      )}
+
       <BackToTopButton targetRef={backToTopTargetRef} />
     </main>
   )

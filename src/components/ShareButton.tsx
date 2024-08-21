@@ -32,6 +32,7 @@ export default function ShareButton() {
       disableHoverListener
       disableFocusListener
       disableTouchListener
+      arrow
     >
       <IconButton
         aria-label='share'

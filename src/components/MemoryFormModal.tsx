@@ -163,7 +163,7 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
               </FormControl>
             )}
           />
-          <div className='flex justify-end mt-4'>
+          <div className='flex justify-end mt-6'>
             <Button
               variant='outlined'
               color='primary'

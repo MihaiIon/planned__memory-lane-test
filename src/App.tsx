@@ -55,6 +55,7 @@ function App() {
       <SideNavigation />
       <TopNavigation />
       <main className='absolute top-16 left-20 right-0 bottom-0 overflow-y-auto bg-gray-50 py-8 px-2 sm:px-8'>
+      <main className='absolute top-16 left-20 right-0 bottom-0 overflow-y-auto bg-gray-50 pt-10 pb-20 px-2 sm:px-8'>
         <h1 className='text-4xl font-medium mt-4 text-center'>
           <span>{fakeUser.firstName}'s Memory Lane</span>
           <ShareButton />

@@ -38,7 +38,6 @@ export default function MemoryCard(props: MemoryCardProps) {
       className='memory-card border mx-auto'
     >
       <CardHeader
-        avatar={<UserAvatar user={memory.user} />}
         action={
           !props.readOnly && [
             <IconButton
@@ -57,10 +56,12 @@ export default function MemoryCard(props: MemoryCardProps) {
             </IconButton>,
           ]
         }
-        title={memory.user.fullName}
         className='!pb-0'
       />
-      <CardContent className='!pt-0'>
+      <CardContent className='!pt-6 text-center'>
+        <div className='flex justify-center'>
+          <UserAvatar user={memory.user} />
+        </div>
         <h3 className='text-2xl font-medium mb-3 mt-3'>{memory.name}</h3>
         <p className='text-gray-600 text-xl'>{memory.description}</p>
         <p className='mt-4 text-gray-800 text-center text-sm mt-6'>

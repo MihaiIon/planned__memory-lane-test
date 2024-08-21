@@ -10,3 +10,12 @@
 .modal--inner {
   border-radius: 0.8rem !important;
 }
+
+.memory-card {
+  position: relative;
+}
+.memory-card .MuiCardHeader-root {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

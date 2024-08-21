@@ -6,6 +6,8 @@ import MemoryFormModal from './components/MemoryFormModal'
 import SideNavigation from './components/SideNavigation'
 import TopNavigation from './components/TopNavigation'
 import MemoryList from './components/MemoryList'
+import UserAvatar from './components/UserAvatar'
+import ShareButton from './components/ShareButton'
 
 import { useMemories } from './hooks/useMemories'
 import { fakeUser } from './fakeData'
@@ -53,8 +55,9 @@ function App() {
       <SideNavigation />
       <TopNavigation />
       <main className='absolute top-16 left-20 right-0 bottom-0 overflow-y-auto bg-gray-50 py-8 px-2 sm:px-8'>
-        <h1 className='text-4xl font-medium mb-6 text-center'>
-          {fakeUser.firstName}'s Memory Lane
+        <h1 className='text-4xl font-medium mt-4 text-center'>
+          <span>{fakeUser.firstName}'s Memory Lane</span>
+          <ShareButton />
         </h1>
         <hr className='my-4 w-36 mx-auto border-t-1 border-gray-200 my-6' />
         <Card

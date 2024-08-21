@@ -4,6 +4,9 @@
 
 /* MUI: Paper */
 
-.MuiPaper-rounded {
+.MuiPaper-rounded,
+.MuiInputBase-root,
+.MuiButtonBase-root,
+.modal--inner {
   border-radius: 0.8rem !important;
 }

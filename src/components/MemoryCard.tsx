@@ -15,6 +15,7 @@ type MemoryCardProps = {
   memory: MemoryWithUserType
   onEdit: (memory: MemoryType) => void
   onDelete: (memoryId: number) => void
+  readOnly?: boolean
 }
 
 export default function MemoryCard(props: MemoryCardProps) {
@@ -38,22 +39,24 @@ export default function MemoryCard(props: MemoryCardProps) {
     >
       <CardHeader
         avatar={<UserAvatar user={memory.user} />}
-        action={[
-          <IconButton
-            aria-label='edit'
-            onClick={handleEdit}
-            className='hover:text-blue-500'
-          >
-            <Edit />
-          </IconButton>,
-          <IconButton
-            aria-label='delete'
-            onClick={() => props.onDelete(memory.id ?? -1)}
-            className='hover:text-red-500 !transition-colors'
-          >
-            <Delete />
-          </IconButton>,
-        ]}
+        action={
+          !props.readOnly && [
+            <IconButton
+              aria-label='edit'
+              onClick={handleEdit}
+              className='hover:text-blue-500'
+            >
+              <Edit />
+            </IconButton>,
+            <IconButton
+              aria-label='delete'
+              onClick={() => props.onDelete(memory.id ?? -1)}
+              className='hover:text-red-500 !transition-colors'
+            >
+              <Delete />
+            </IconButton>,
+          ]
+        }
         title={memory.user.fullName}
         className='!pb-0'
       />

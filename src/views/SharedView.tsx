@@ -35,6 +35,7 @@ export default function SharedView() {
         onAdd={handleAddMemory}
         onEdit={handleEditMemory}
         onDelete={handleDeleteMemory}
+        readOnly
       />
     </main>
   )

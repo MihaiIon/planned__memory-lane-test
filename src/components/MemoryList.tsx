@@ -12,6 +12,7 @@ type MemoryListProps = {
   onAdd: (memory: Partial<MemoryType>) => void
   onEdit: (memory: MemoryType) => void
   onDelete: (memoryId: number) => void
+  readOnly?: boolean
 }
 
 const sortByTimestampAscending = (
@@ -24,28 +25,36 @@ const MemoryList: React.FC<MemoryListProps> = ({
   onAdd,
   onEdit,
   onDelete,
+  readOnly = false,
 }) => {
   return (
     <div>
       {memories.sort(sortByTimestampAscending).map((memory, index) => (
         <React.Fragment key={`${memory.timestamp}-${memory.id}`}>
-          <MemoryCard memory={memory} onEdit={onEdit} onDelete={onDelete} />
+          <MemoryCard
+            memory={memory}
+            onEdit={onEdit}
+            onDelete={onDelete}
+            readOnly={readOnly}
+          />
           {
-            <div className='text-center my-2'>
-              <IconButton
-                aria-label='add-memory'
-                onClick={() =>
-                  onAdd({
-                    timestamp:
-                      index !== memories.length - 1
-                        ? memory.timestamp
-                        : new Date().getTime(),
-                  })
-                }
-                className='text-center !text-gray-400'
-              >
-                <Add />
-              </IconButton>
+            <div className='text-center my-3'>
+              {!readOnly && (
+                <IconButton
+                  aria-label='add-memory'
+                  onClick={() =>
+                    onAdd({
+                      timestamp:
+                        index !== memories.length - 1
+                          ? memory.timestamp
+                          : new Date().getTime(),
+                    })
+                  }
+                  className='text-center !text-gray-400'
+                >
+                  <Add />
+                </IconButton>
+              )}
             </div>
           }
         </React.Fragment>

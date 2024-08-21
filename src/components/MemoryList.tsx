@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { IconButton } from '@mui/material'
-import { Add } from '@mui/icons-material'
+import { Add, MoreVert } from '@mui/icons-material'
 
 import MemoryCard from './MemoryCard'
 
@@ -39,7 +39,7 @@ const MemoryList: React.FC<MemoryListProps> = ({
           />
           {
             <div className='text-center my-3'>
-              {!readOnly && (
+              {!readOnly ? (
                 <IconButton
                   aria-label='add-memory'
                   onClick={() =>
@@ -54,6 +54,10 @@ const MemoryList: React.FC<MemoryListProps> = ({
                 >
                   <Add />
                 </IconButton>
+              ) : (
+                index !== memories.length - 1 && (
+                  <MoreVert className='text-gray-400 !text-sm' />
+                )
               )}
             </div>
           }

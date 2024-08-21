@@ -139,7 +139,15 @@ export default function MemoryFormModal(props: MemoryFormModalProps) {
           <Controller
             name='date'
             control={control}
-            rules={{ required: 'Date is required' }}
+            rules={{
+              required: 'Date is required',
+              validate: (value) => {
+                const inputDate = new Date(value)
+                const today = new Date()
+                today.setHours(0, 0, 0, 0)
+                return inputDate <= today || 'Date cannot be in the future'
+              },
+            }}
             render={({ field }) => (
               <FormControl fullWidth margin='normal'>
                 <TextField

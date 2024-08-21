@@ -56,9 +56,27 @@ function App() {
         <h1 className='text-4xl font-medium mb-6 text-center'>
           {fakeUser.firstName}'s Memory Lane
         </h1>
-        <Button onClick={handleAddMemory} variant='contained' className='!mb-6'>
-          Add Memory
-        </Button>
+        <hr className='my-4 w-36 mx-auto border-t-1 border-gray-200 my-6' />
+        <Card
+          sx={{ width: 450 }}
+          variant='elevation'
+          elevation={0}
+          className='memory-card border mx-auto mb-4'
+        >
+          <CardContent className='!py-6'>
+            <div className='flex items-center'>
+              <UserAvatar user={fakeUser} />
+              <TextField
+                id='form--memory-name'
+                placeholder='Share a precious memory...'
+                className='w-full !ml-4 bg-gray-50'
+                onClick={() => handleAddMemory()}
+                value={''}
+              />
+            </div>
+          </CardContent>
+        </Card>
+
         <MemoryList
           memories={memories}
           onAdd={handleAddMemory}

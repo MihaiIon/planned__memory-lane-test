@@ -1,3 +1,5 @@
+<img src="./src/assets/logo.png" alt="Shared Memories Logo" width="120"/>
+
 # Documentation Format
 
 This documentation provides an overview of UX/UI decisions made during development, highlighting design choices and technical intricacies for a better user experience.
@@ -14,7 +16,7 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 
 ## App Frame
 
-![First Image](./docs/1.jpg)
+![App Frame](./docs/1.jpg)
 
 ### 🎯 UX/UI Design Decisions
 
@@ -23,9 +25,11 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 
 > To enhance the user experience on smaller screens (tablet/phone), the side navigation would be hidden by default. Users could access the navigation menu by clicking on a burger icon, which overlays it on top of the content. This structure is commonly used in modern apps. **Although not implemented in this project**, it provides a clear framework for future development.
 
+> For fun, I generated a logo using Midjourney. The app wwould be named **SharedMemories (SM)**.
+
 ## Page Design
 
-![First Image](./docs/1.jpg)
+![Page Design](./docs/1.jpg)
 
 ### 🎯 UX/UI Design Decisions
 
@@ -35,7 +39,6 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 - **Inviting User Engagement**: Instead of displaying a form, an inviting input message encourages users to share their memories. Clicking on the input triggers a modal with the actual form, maintaining a clean UI while providing additional functionality.
 - **Back to Top Button**: Added a button on the bottom-right corner for easy navigation back to the Share Button.
 
-> For fun, I generated a logo using Midjourney. The app wwould be named **SharedMemories (SM)**.
 
 
 ---

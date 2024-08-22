@@ -16,7 +16,7 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 
 ## App Frame
 
-<img src="./docs/1.jpg" alt="App Frame" width="800"/>
+<img src="./docs/1.JPG" alt="App Frame" width="800"/>
 
 ### 🎯 UX/UI Design Decisions
 
@@ -29,7 +29,7 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 
 ## Page Design
 
-<img src="./docs/1.jpg" alt="Page Design" width="800"/>
+<img src="./docs/1.JPG" alt="Page Design" width="800"/>
 
 ### 🎯 UX/UI Design Decisions
 

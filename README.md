@@ -10,6 +10,8 @@ In addition, I will share my thoughts on certain implementations or missing feat
 
 Let's get started.
 
+<br />
+
 # First Look
 
 The interface is designed to be minimalistic yet intuitive, guiding users without overwhelming them.
@@ -44,13 +46,13 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 
 - **Back to Top Button**: Added a button on the bottom-right corner for easy navigation back to the Share Button.
 
----
+<br />
 
 # Memory Form Modal
 
 ## Creating a new memory
 
-<img src="./docs/2.JPG" alt="Page Design" width="800"/>
+<img src="./docs/2.JPG" alt="Memory Form Modal" width="800"/>
 
 ### 🎯 UX/UI Design Decisions
 
@@ -87,11 +89,11 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 
 > This happens when the user tries to submit an invalid form.
 
----
+<br />
 
 # Memory Card
 
-<img src="./docs/memory-card-demo.gif" alt="Page Design" width="800"/>
+<img src="./docs/memory-card-demo.gif" alt="Memory Card" width="800"/>
 
 ### 🎯 UX/UI Design Decisions
 
@@ -101,13 +103,32 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 
 - **Date proximity to Add Memory Button**: This design choice aims to assist users in determining whether they want to add a memory at this specific location. The date will be automatically selected from the previous memory card, streamlining the process.
 
-> ⭐ Ideally I would have added a **Confirmation Modal** for the **Delete Action**. In this case, I decided to mention it in here instead to save some work.
+> 🌟 Ideally I would have added a **Confirmation Modal** for the **Delete Action**. In this case, I decided to mention it in here instead to save some work.
 
 > I wanted to make something different from the mockup, so I decided to center the elements and go for another look.
 
 ### 🔧 Technical Decisions
 
 - **Displaying All Actions**: Initially, I considered hiding the card actions inside a `<Menu />` component. However, this added unnecessary complexity to the code, as I had to anchor the menu. Ultimately, I decided to keep the actions visible since there are only two options.
+
+<br />
+
+# Sharing Memory Lane
+
+<img src="./docs/sharing-memory-lane.gif" alt="Sharing Memory Lane" width="800"/>
+
+### 🎯 UX/UI Design Decisions
+
+- **Copied! Tooltip**: When the user clicks on the **Share Button**, a tooltip will appear to inform the user that the link has been copied. This tooltip serves as a visual confirmation for the user to indicate that they can now paste the link to their memory lane.
+
+- **Presentation Page**: When users access the sharing link, they are directed to a simplified page with a clean layout and limited actions, such as the share button. This provides a shared view of the memory lane, allowing others to easily view and explore the content.
+
+- **App Logo Inclusion**: The inclusion of the app logo on the presentation page serves as a visual cue for other users, enticing them to explore the website and experience it for themselves.
+
+> 🌟 If I were building this page, I would also include a link to the main page of the app or provide a way for users to subscribe and try it out.
+
+<br />
+<br />
 
 ---
 

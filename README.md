@@ -1,38 +1,42 @@
-# Implementation Details
+# Documentation Format
 
-I am documenting my process in real-time to provide transparency. Not everything described here may be implemented, but I aim to share my thoughts and decisions as they evolve. If I am unsure about a feature, it will be noted in quotes.
+This documentation provides an overview of UX/UI decisions made during development, highlighting design choices and technical intricacies for a better user experience.
 
-> "If I have time, I will..."
+In addition, I will share my thoughts on certain implementations or missing features. Although not everything will be implemented, I want to address these concerns in a clear and concise manner.
 
-## Tools
+> This is an example of a thought.
 
-- I installed the `mui` library for form inputs, modals, and possibly card elements. It comes with predefined styles that work out of the box, which I can override with CSS or Tailwind for customization.
+Let's get started.
 
-> I may also use a third-party library for managing form state with the `useForm` hook, which will make handling dirty values easier when a user updates an existing memory.
+# First Look
 
-## Page Structure
+The interface is designed to be minimalistic yet intuitive, guiding users without overwhelming them.
 
-I chose to add a `<SideNavigation/>` to contain the **logo** and a `<TopNavigation/>` to conatin the profile picture.
+## App Frame
 
-> The idea is to hide the side navigation on smaller screens (tablet/phone) and toggle it via a burger menu to overlay it on top of the content. This structure is common in modern apps, with modules on the side and user-specific features (notifications, profile, etc.) on top. While not strictly necessary for this project, I added it to provide a clear framework for the app.
+![First Image](./docs/1.jpg)
 
-I used absolute positioning to anchor the navigations and content, ensuring precise placement. Scrolling is enabled only within the content region (`<main />`).
+### 🎯 UX/UI Design Decisions
 
-For fun, I generated a logo using Midjourney. The app is named **SharedMemories (SM)**.
+- **Top Navigation**: Added a top navigation bar with user-specific features, such as the logged-in profile and notifications.
+- **Side Navigation**: Added a side navigation bar displaying the app logo and modules. It could be hidden on smaller screens and toggled via a burger menu.
 
-## Memory Cards (UI)
+> To enhance the user experience on smaller screens (tablet/phone), the side navigation would be hidden by default. Users could access the navigation menu by clicking on a burger icon, which overlays it on top of the content. This structure is commonly used in modern apps. **Although not implemented in this project**, it provides a clear framework for future development.
 
-I could have started with the backend, but I chose to prioritize the front-end to focus on the user experience. The backend appears straightforward, so my initial effort is on developing the UI.
+## Page Design
 
-### Creating the Card
+![First Image](./docs/1.jpg)
 
-I opted to use MUI Card components to accelerate development. Creating a `MemoryCard` component from the start will simplify the code, enhance readability, and allow me to loop over the memories to generate all the memory cards efficiently.
+### 🎯 UX/UI Design Decisions
 
-### Card Options
+- **Your Memory Lane**: I decided to go with this title because it clearly communicates the purpose of the page, keeping it personal to the user.
+- **Share button**: I placed this button next to the page's title for better visibility and to clearly indicate its association with the page.
+- **Memory Cards Placeholder**: When the page is empty, a message "A blank canvas, waiting..." creates the impression of an art board, hinting at the memories that will soon fill the space.
+- **Inviting User Engagement**: Instead of displaying a form, an inviting input message encourages users to share their memories. Clicking on the input triggers a modal with the actual form, maintaining a clean UI while providing additional functionality.
+- **Back to Top Button**: Added a button on the bottom-right corner for easy navigation back to the Share Button.
 
-There are no clear criteria on whether users can share a single memory, nor are there requirements for a like button with a counter or a message thread for each memory. Therefore, I will not implement these features.
+> For fun, I generated a logo using Midjourney. The app wwould be named **SharedMemories (SM)**.
 
-I will focus on the CRUD functionality, ensuring users can **Create, Read, Update, and Delete** memories efficiently.
 
 ---
 

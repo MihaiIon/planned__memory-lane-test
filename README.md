@@ -26,11 +26,11 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 
 > To enhance the user experience on smaller screens (tablet/phone), the side navigation would be hidden by default. Users could access the navigation menu by clicking on a burger icon, which overlays it on top of the content. This structure is commonly used in modern apps. **Although not implemented in this project**, it provides a clear framework for future development.
 
-> For fun, I generated a logo using Midjourney. The app wwould be named **SharedMemories (SM)**.
+> For fun, I generated a **logo using Midjourney**. The app would be named **SharedMemories (SM)**.
 
 ## Page Design
 
-<img src="./docs/1.JPG" alt="Page Design" width="800"/>
+<img src="./docs/page-design.gif" alt="Page Design" width="800"/>
 
 ### 🎯 UX/UI Design Decisions
 
@@ -70,7 +70,8 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 
 - **Modal Reusability for Creating and Editing Memories**: To streamline the process and minimize code duplication, I opted to utilize the same modal component for both creating and editing memories. This approach allows for efficient management of both scenarios while keeping the codebase concise. See [MemoryFormModal.tsx](./src/components/MemoryFormModal.tsx) for the implementation details.
 
-> I went with `@mui/icons-material` package for this project. I didn't remove `@heroicons/react`.
+> I went with `@mui/icons-material` package for this project.
+> I didn't remove `@heroicons/react`.
 
 ## Errors & Validations
 
@@ -83,6 +84,8 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 - **Multiple error messages possible**: If there are multiple errors, each field will display its respective error message. This allows users to address each issue individually and ensure a smooth form submission process.
 
 - **No future date allowed**: To ensure data integrity, the form will not submit if the selected date is in the future.
+
+> This happens when the user tries to submit an invalid form.
 
 ---
 

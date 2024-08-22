@@ -1,10 +1,12 @@
 const express = require('express')
 const sqlite3 = require('sqlite3')
+const cors = require('cors')
 
 const app = express()
 const port = 4001
 const db = new sqlite3.Database('memories.db')
 
+app.use(cors())
 app.use(express.json())
 
 db.serialize(() => {
@@ -46,8 +48,19 @@ app.post('/memories', (req, res) => {
       res.status(500).json({ error: err.message })
       return
     }
-    res.status(201).json({ message: 'Memory created successfully' })
   })
+
+  // return the memory that was just created - we will make use of id if we want to update or delete the memory
+  db.get(
+    'SELECT * FROM memories WHERE id = last_insert_rowid()',
+    (err, row) => {
+      if (err) {
+        console.log(err)
+        return
+      }
+      res.json({ memory: row })
+    }
+  )
 })
 
 app.get('/memories/:id', (req, res) => {
@@ -84,7 +97,15 @@ app.put('/memories/:id', (req, res) => {
       res.status(500).json({ error: err.message })
       return
     }
-    res.json({ message: 'Memory updated successfully' })
+  })
+
+  // return the memory that was just updated
+  db.get('SELECT * FROM memories WHERE id = ?', [id], (err, row) => {
+    if (err) {
+      res.status(500).json({ error: err.message })
+      return
+    }
+    res.json({ memory: row })
   })
 })
 

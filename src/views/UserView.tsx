@@ -62,7 +62,7 @@ export default function UserView() {
           className='text-4xl font-medium pt-20 text-center'
           ref={backToTopTargetRef}
         >
-          <span>{fakeUser.firstName}'s Memory Lane</span>
+          <span>Your Memory Lane</span>
           <ShareButton />
         </h1>
 

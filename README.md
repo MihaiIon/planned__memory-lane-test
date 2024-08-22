@@ -89,6 +89,26 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 
 ---
 
+# Memory Card
+
+<img src="./docs/memory-card-demo.gif" alt="Page Design" width="800"/>
+
+### 🎯 UX/UI Design Decisions
+
+- **Add Memory Button in-between Memories**: To enhance user experience, I decided to place a **Add Memory** button in-between memories. This allows users to easily add a new memory next to an existing one without navigating through different dates.
+
+- **Red for Delete**: I chose the color red to represent the delete action, as it is commonly associated with caution and warning. This color choice helps users easily identify and differentiate the delete option from other actions.
+
+- **Date proximity to Add Memory Button**: This design choice aims to assist users in determining whether they want to add a memory at this specific location. The date will be automatically selected from the previous memory card, streamlining the process.
+
+> ⭐ Ideally I would have added a **Confirmation Modal** for the **Delete Action**. In this case, I decided to mention it in here instead to save some work.
+
+> I wanted to make something different from the mockup, so I decided to center the elements and go for another look.
+
+### 🔧 Technical Decisions
+
+- **Displaying All Actions**: Initially, I considered hiding the card actions inside a `<Menu />` component. However, this added unnecessary complexity to the code, as I had to anchor the menu. Ultimately, I decided to keep the actions visible since there are only two options.
+
 ---
 
 # Planned coding challenge: Memory lane

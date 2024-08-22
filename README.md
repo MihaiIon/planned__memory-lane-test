@@ -21,6 +21,7 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 ### 🎯 UX/UI Design Decisions
 
 - **Top Navigation**: Added a top navigation bar with user-specific features, such as the logged-in profile and notifications.
+
 - **Side Navigation**: Added a side navigation bar displaying the app logo and modules. It could be hidden on smaller screens and toggled via a burger menu.
 
 > To enhance the user experience on smaller screens (tablet/phone), the side navigation would be hidden by default. Users could access the navigation menu by clicking on a burger icon, which overlays it on top of the content. This structure is commonly used in modern apps. **Although not implemented in this project**, it provides a clear framework for future development.
@@ -34,9 +35,13 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 ### 🎯 UX/UI Design Decisions
 
 - **Your Memory Lane**: I decided to go with this title because it clearly communicates the purpose of the page, keeping it personal to the user.
+
 - **Share button**: I placed this button next to the page's title for better visibility and to clearly indicate its association with the page.
+
 - **Memory Cards Placeholder**: When the page is empty, a message "A blank canvas, waiting..." creates the impression of an art board, hinting at the memories that will soon fill the space.
+
 - **Inviting User Engagement**: Instead of displaying a form, an inviting input message encourages users to share their memories. Clicking on the input triggers a modal with the actual form, maintaining a clean UI while providing additional functionality.
+
 - **Back to Top Button**: Added a button on the bottom-right corner for easy navigation back to the Share Button.
 
 ---
@@ -44,6 +49,42 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 # Memory Form Modal
 
 ## Creating a new memory
+
+<img src="./docs/2.JPG" alt="Page Design" width="800"/>
+
+### 🎯 UX/UI Design Decisions
+
+- **Date Set to Today**: The date is automatically set to the current date when creating a memory, saving time for the user. If needed, the user can manually select a different date using the date picker.
+
+- **Expanded Description Field**: An expanded textarea field allows for more space to view and write the description.
+
+- **Multiple way to close Modal**: The user can close the modal by clicking the Close button, selecting cancel, or clicking outside the modal. This provides flexibility and convenience.
+
+> While reviewing this modal, one improvement that crossed my mind is adding a `tabIndex={0}` to the first field. This would allow the user to start writing immediately, enhancing the overall user experience.
+
+### 🔧 Technical Decisions
+
+- **MUI Library**: Utilizing the MUI Library for its extensive collection of components and functionalities, providing pre-built UI elements and built-in accessibility features for an inclusive user experience.
+
+- **React Hook Form Library**: Opting for the React Hook Form Library to streamline form creation in React, simplifying form handling with intuitive hooks and utilities for efficient validation, submission, and error handling.
+
+- **Modal Reusability for Creating and Editing Memories**: To streamline the process and minimize code duplication, I opted to utilize the same modal component for both creating and editing memories. This approach allows for efficient management of both scenarios while keeping the codebase concise. See [MemoryFormModal.tsx](./src/components/MemoryFormModal.tsx) for the implementation details.
+
+> I went with `@mui/icons-material` package for this project. I didn't remove `@heroicons/react`.
+
+## Errors & Validations
+
+<img src="./docs/3.JPG" alt="Page Design" width="800"/>
+
+### 🎯 UX/UI Design Decisions
+
+- **Error highlighting**: To enhance user experience, fields with errors are visually highlighted in red, allowing users to easily identify and correct their input.
+
+- **Multiple error messages possible**: If there are multiple errors, each field will display its respective error message. This allows users to address each issue individually and ensure a smooth form submission process.
+
+- **No future date allowed**: To ensure data integrity, the form will not submit if the selected date is in the future.
+
+---
 
 ---
 

@@ -30,7 +30,7 @@ const MemoryList: React.FC<MemoryListProps> = ({
   return (
     <div>
       {memories.sort(sortByTimestampAscending).map((memory, index) => (
-        <React.Fragment key={`${memory.timestamp}-${memory.id}`}>
+        <React.Fragment key={`${memory.timestamp}-${memory.id}-${memory.name}`}>
           <MemoryCard
             memory={memory}
             onEdit={onEdit}

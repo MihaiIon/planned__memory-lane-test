@@ -16,7 +16,7 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 
 ## App Frame
 
-![App Frame](./docs/1.jpg)
+<img src="./docs/1.jpg" alt="App Frame" width="800"/>
 
 ### 🎯 UX/UI Design Decisions
 
@@ -29,7 +29,7 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 
 ## Page Design
 
-![Page Design](./docs/1.jpg)
+<img src="./docs/1.jpg" alt="Page Design" width="800"/>
 
 ### 🎯 UX/UI Design Decisions
 
@@ -39,7 +39,11 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 - **Inviting User Engagement**: Instead of displaying a form, an inviting input message encourages users to share their memories. Clicking on the input triggers a modal with the actual form, maintaining a clean UI while providing additional functionality.
 - **Back to Top Button**: Added a button on the bottom-right corner for easy navigation back to the Share Button.
 
+---
 
+# Memory Form Modal
+
+## Creating a new memory
 
 ---
 

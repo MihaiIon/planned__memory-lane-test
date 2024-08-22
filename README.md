@@ -128,6 +128,34 @@ The interface is designed to be minimalistic yet intuitive, guiding users withou
 > 🌟 If I were building this page, I would also include a link to the main page of the app or provide a way for users to subscribe and try it out.
 
 <br />
+
+# Project Structure
+
+Here is an overview of my project structure:
+
+```
+src/
+  App.css                // Global CSS for the application
+  App.tsx                // Main application component
+  assets/                // Directory for static assets
+  components/            // Directory for reusable components
+  fakeData.tsx           // File containing fake data for testing
+  hooks/                 // Directory for custom hooks
+  http/                  // Directory for HTTP-related utilities
+  index.css              // Global CSS file
+  main.tsx               // Entry point for the React application
+  types/                 // Directory for TypeScript type definitions
+  utils/                 // Directory for utility functions
+  views/                 // Directory for view components
+```
+
+<br />
+
+<img src="./docs/thank-you.webp" alt="Sharing Memory Lane" width="150"/>
+
+🌟 Thank you for taking the time to review this project! 🌟
+
+<br />
 <br />
 
 ---
